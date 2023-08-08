@@ -1,5 +1,8 @@
 package com.nephew.tutorial.mongotutorial;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,10 +25,11 @@ public class MongoTutorialApplication {
 		return args -> {
 			Category category1 = new Category("Phone", "Technology");			
 			Category category2 = new Category("Computer", "Technology");
-			categoryRepository.insert(category1);
-			categoryRepository.insert(category2);
-			Product product = new Product("iPhone", "Smart Phone");
-			productRepo.insert(product);
+			// categoryRepository.insert(category1);
+			// categoryRepository.insert(category2);
+			Product product1 = new Product("iPhone 11", "Apple Phone", BigDecimal.valueOf(900), 25999, 3, Arrays.asList("Buenos Aires", "Córdoba", "La Plata"), category1);
+			
+			productRepo.insert(product1);
 		};
 	}
 

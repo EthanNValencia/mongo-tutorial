@@ -14,38 +14,60 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nephew.tutorial.mongotutorial.documents.Product;
 import com.nephew.tutorial.mongotutorial.services.ProductService;
+import com.nephew.tutorial.mongotutorial.services.SearchService;
 
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
 	@Autowired
-	ProductService service;
+	ProductService productService;
+	
+	@Autowired
+	SearchService searchService;
 
 	@PostMapping("")
 	public ResponseEntity<String> postProduct(@RequestBody Product product) {
 		System.out.println("PRODUCT PRINT " + product);
-		ResponseEntity<String> response = ResponseEntity.ok(service.save(product));
+		ResponseEntity<String> response = ResponseEntity.ok(productService.save(product));
 		return response;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<Product> findById(@PathVariable("id") String id) {
-		ResponseEntity<Product> response = ResponseEntity.ok(service.findById(id));
+		ResponseEntity<Product> response = ResponseEntity.ok(productService.findById(id));
 		return response;
 	}
 
 	@GetMapping("")
 	public ResponseEntity<List<Product>> getAllProducts() {
-		ResponseEntity<List<Product>> response = ResponseEntity.ok(service.findAll());
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(productService.findAll());
 		return response;
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/id/{id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable("id") String id) {
 		// ResponseEntity<Void> response = ResponseEntity.ok(service.delete(id));
-		service.delete(id);
+		productService.delete(id);
 		return ResponseEntity.accepted().build();
+	}
+	
+	@GetMapping("/search/is/{name}")
+	public ResponseEntity<List<Product>> searchByName(@PathVariable("name") String name) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByName(name));
+		return response;
+	}
+	
+	@GetMapping("/search/starts-with/{name}")
+	public ResponseEntity<List<Product>> searchByNameStartsWith(@PathVariable("name") String name) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByNameStartingWith(name));
+		return response;
+	}
+	
+	@GetMapping("/search/ends-with/{name}")
+	public ResponseEntity<List<Product>> searchByNameEndssWith(@PathVariable("name") String name) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByNameEndingWith(name));
+		return response;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.nephew.tutorial.mongotutorial.documents;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -12,9 +13,26 @@ public class Product {
 	private String id;
 	private String name;
 	private String description;
+	private BigDecimal price;
+	private double quantity;
+	private double rating;
 	private List<String> tags;
 	@DBRef
 	private Category category;
+
+	
+	
+	public Product(String name, String description, BigDecimal price, double quantity, double rating,
+			List<String> tags, Category category) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.quantity = quantity;
+		this.rating = rating;
+		this.tags = tags;
+		this.category = category;
+	}
 
 	public Product(String id, String name, String description, List<String> tags, Category category) {
 		super();
@@ -44,6 +62,30 @@ public class Product {
 		super();
 		this.name = name;
 		this.description = description;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 
 	public Product() {
