@@ -1,6 +1,9 @@
 package com.nephew.tutorial.mongotutorial.documents;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -9,6 +12,26 @@ public class Product {
 	private String id;
 	private String name;
 	private String description;
+	private List<String> tags;
+	@DBRef
+	private Category category;
+
+	public Product(String id, String name, String description, List<String> tags, Category category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.tags = tags;
+		this.category = category;
+	}
+
+	public Product(String id, String name, String description, List<String> tags) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.tags = tags;
+	}
 
 	public Product(String id, String name, String description) {
 		super();
@@ -21,6 +44,10 @@ public class Product {
 		super();
 		this.name = name;
 		this.description = description;
+	}
+
+	public Product() {
+		super();
 	}
 
 	public String getId() {
@@ -47,9 +74,26 @@ public class Product {
 		this.description = description;
 	}
 
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", tags=" + tags
+				+ ", category=" + category + "]";
 	}
 
 }
