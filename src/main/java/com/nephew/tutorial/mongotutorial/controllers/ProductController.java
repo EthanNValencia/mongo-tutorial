@@ -79,9 +79,28 @@ public class ProductController {
 	
 	@GetMapping("/search/gt/{price}")
 	public ResponseEntity<List<Product>> searchByPriceGt(@PathVariable("price") Integer price) {
-		System.out.println("price: " + price);
 		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByPriceGt(price));
 		return response;
 	}
+	
+	@GetMapping("/search/asc/{fieldname}")
+	public ResponseEntity<List<Product>> searchByPriceGt(@PathVariable("fieldname") String fieldName) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.sortByFieldAsc(fieldName));
+		return response;
+	}
+	
+	@GetMapping("/search/least-recent")
+	public ResponseEntity<Product> searchLeastRecentDate() {
+		ResponseEntity<Product> response = ResponseEntity.ok(searchService.sortLeastRecentDate());
+		return response;
+	}
+	
+	@GetMapping("/search/most-recent")
+	public ResponseEntity<Product> searchMostRecentDate() {
+		ResponseEntity<Product> response = ResponseEntity.ok(searchService.sortMostRecentDate());
+		return response;
+	}
+	
+	
 
 }

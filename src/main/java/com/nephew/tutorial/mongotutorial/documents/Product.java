@@ -1,5 +1,6 @@
 package com.nephew.tutorial.mongotutorial.documents;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -15,12 +16,26 @@ public class Product {
 	private Integer price;
 	private Integer quantity;
 	private Integer rating;
+	private LocalDate date;
 	private List<String> tags;
 	@DBRef
 	private Category category;
-	
+
 	public Product(String name, String description, Integer price, Integer quantity, Integer rating,
-			List<String> tags, Category category) {
+			LocalDate date, List<String> tags, Category category) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.quantity = quantity;
+		this.rating = rating;
+		this.date = date;
+		this.tags = tags;
+		this.category = category;
+	}
+
+	public Product(String name, String description, Integer price, Integer quantity, Integer rating, List<String> tags,
+			Category category) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -59,6 +74,14 @@ public class Product {
 		super();
 		this.name = name;
 		this.description = description;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	public Integer getPrice() {
