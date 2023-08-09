@@ -1,5 +1,6 @@
 package com.nephew.tutorial.mongotutorial.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,19 +55,32 @@ public class ProductController {
 	
 	@GetMapping("/search/is/{name}")
 	public ResponseEntity<List<Product>> searchByName(@PathVariable("name") String name) {
-		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByName(name));
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByName(name));
 		return response;
 	}
 	
 	@GetMapping("/search/starts-with/{name}")
 	public ResponseEntity<List<Product>> searchByNameStartsWith(@PathVariable("name") String name) {
-		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByNameStartingWith(name));
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByNameStartingWith(name));
 		return response;
 	}
 	
 	@GetMapping("/search/ends-with/{name}")
-	public ResponseEntity<List<Product>> searchByNameEndssWith(@PathVariable("name") String name) {
-		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.findByNameEndingWith(name));
+	public ResponseEntity<List<Product>> searchByNameEndsWith(@PathVariable("name") String name) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByNameEndingWith(name));
+		return response;
+	}
+	
+	@GetMapping("/search/lt/{price}")
+	public ResponseEntity<List<Product>> searchByPriceLt(@PathVariable("price") Integer price) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByPriceLt(price));
+		return response;
+	}
+	
+	@GetMapping("/search/gt/{price}")
+	public ResponseEntity<List<Product>> searchByPriceGt(@PathVariable("price") Integer price) {
+		System.out.println("price: " + price);
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.searchByPriceGt(price));
 		return response;
 	}
 
