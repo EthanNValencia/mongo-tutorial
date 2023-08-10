@@ -1,6 +1,5 @@
 package com.nephew.tutorial.mongotutorial.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,14 @@ import com.nephew.tutorial.mongotutorial.services.SearchService;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-	@Autowired
-	ProductService productService;
-	
-	@Autowired
-	SearchService searchService;
+	private final ProductService productService;	
+	private final SearchService searchService;
+
+	public ProductController(ProductService productService, SearchService searchService) {
+		super();
+		this.productService = productService;
+		this.searchService = searchService;
+	}
 
 	@PostMapping("")
 	public ResponseEntity<String> postProduct(@RequestBody Product product) {
@@ -89,11 +91,19 @@ public class ProductController {
 		return response;
 	}
 	
+	@GetMapping("/sort-page/{fieldname}")
+	public ResponseEntity<List<Product>> sortAndPage(@PathVariable("fieldname") String fieldName) {
+		ResponseEntity<List<Product>> response = ResponseEntity.ok(searchService.sortAndPageByFieldAsc(fieldName));
+		return response;
+	}
+	
+	/*
 	@GetMapping("/search/least-recent")
 	public ResponseEntity<Product> searchLeastRecentDate() {
 		ResponseEntity<Product> response = ResponseEntity.ok(searchService.sortLeastRecentDate());
 		return response;
 	}
+	*/
 	
 	@GetMapping("/search/most-recent")
 	public ResponseEntity<Product> searchMostRecentDate() {

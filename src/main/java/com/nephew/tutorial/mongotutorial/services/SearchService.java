@@ -3,6 +3,8 @@ package com.nephew.tutorial.mongotutorial.services;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -63,20 +65,19 @@ public class SearchService {
 		List<Product> products = template.find(query, Product.class);
 		return products;
 	}
-
-	public Product sortLeastRecentDate() {
+	
+	public List<Product> sortAndPageByFieldAsc(String fieldName) {
 		Query query = new Query();
-		query.with(Sort.by(Direction.ASC, "date"));
+		Pageable pageable = PageRequest.of(0, 2, Sort.by(Direction.ASC, fieldName));
+		query.with(pageable);
 		List<Product> products = template.find(query, Product.class);
-		if(products.isEmpty()) {
-			return null;
-		}
-		return products.get(0); // Is there a better solution?
+		return products;
 	}
 	
 	public Product sortMostRecentDate() {
 		Query query = new Query();
-		query.with(Sort.by(Direction.DESC, "date"));
+		Pageable pageable = PageRequest.of(0, 1, Sort.by(Direction.DESC, "date"));
+		query.with(pageable);
 		List<Product> products = template.find(query, Product.class);
 		if(products.isEmpty()) {
 			return null;
