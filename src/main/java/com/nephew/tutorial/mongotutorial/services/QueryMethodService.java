@@ -1,7 +1,10 @@
 package com.nephew.tutorial.mongotutorial.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nephew.tutorial.mongotutorial.documents.Product;
@@ -21,31 +24,50 @@ public class QueryMethodService {
 		return productRepository.findAllByNameIgnoreCase(name);
 	}
 
-	public List<Product> searchByNameStartingWith(String name) {
-		return productRepository.findAllByNameStartingWith(name);
+	public List<Product> searchByNameStartingWith(String namePrefix) {
+		return productRepository.findAllByNameStartingWith(namePrefix);
 	}
 
-	public List<Product> searchByNameEndingWith(String name) {
-		return productRepository.findAllByNameEndingWith(name);
+	public List<Product> searchByNameEndingWith(String nameSuffix) {
+		return productRepository.findAllByNameEndingWith(nameSuffix);
+	}
+	
+	public List<Product> searchByNameContaining(String nameInfix) {
+		return productRepository.findAllByNameContainingIgnoreCase(nameInfix);
 	}
 
 	public List<Product> searchByPriceLt(Integer price) {
-		return null;
+		return productRepository.findByPriceLessThan(price);
 	}
 
 	public List<Product> searchByPriceGt(Integer price) {
-		return null;
+		return productRepository.findByPriceGreaterThan(price);
+	}
+	
+	public List<Product> searchByPriceBetween(Integer lowPrice, Integer highPrice) {
+		return productRepository.findByPriceBetween(lowPrice, highPrice);
 	}
 
-	public List<Product> sortByFieldAsc(String fieldName) {
-		return null;
+	public List<Product> searchNameContainingAndSortAscByPrice(String name) {
+		return productRepository.findAllByNameContainingIgnoreCaseOrderByPriceDesc(name);
 	}
 	
-	public List<Product> sortAndPageByFieldAsc(String fieldName) {
-		return null;
+	public List<Product> searchNameContainingAndSortDescByPricePageable(String name) {
+		Pageable pageable = PageRequest.of(0, 1);
+		return productRepository.findAllByNameContainingIgnoreCaseOrderByPriceDesc(name, pageable);
 	}
 	
-	public Product sortMostRecentDate() {
-		return null;
+	public List<Product> searchNameContainingAndSortAscByPricePageable(String name) {
+		Pageable pageable = PageRequest.of(0, 1);
+		return productRepository.findAllByNameContainingIgnoreCaseOrderByPriceAsc(name, pageable);
+	}
+	
+	public List<Product> searchNameContainingAndSortAscByPricePageable(String name, int pageNumber, int size) {
+		Pageable pageable = PageRequest.of(pageNumber, size);
+		return productRepository.findAllByNameContainingIgnoreCaseOrderByPriceAsc(name, pageable);
+	}
+	
+	public List<Product> sortMostRecentDate() {
+		return productRepository.findByDateLessThanEqual(LocalDate.now());
 	}
 }

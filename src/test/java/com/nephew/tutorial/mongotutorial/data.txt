@@ -1,0 +1,116 @@
+[
+  {
+    "id": "64d565a1c817046ab2d34fc5",
+    "name": "iPhone 11",
+    "description": "Apple Phone",
+    "price": 900,
+    "quantity": 25999,
+    "rating": 3,
+    "date": "2023-04-10",
+    "tags": [
+      "Good",
+      "Expensive",
+      "Silver"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc3",
+      "name": "Phone",
+      "type": "Technology"
+    }
+  },
+  {
+    "id": "64d565a1c817046ab2d34fc6",
+    "name": "Galaxy S8",
+    "description": "Android Phone",
+    "price": 500,
+    "quantity": 185000,
+    "rating": 4,
+    "date": "2022-08-10",
+    "tags": [
+      "Great",
+      "Cheap",
+      "Black"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc3",
+      "name": "Phone",
+      "type": "Technology"
+    }
+  },
+  {
+    "id": "64d565a1c817046ab2d34fc7",
+    "name": "M1 Laptop",
+    "description": "Apple conputer",
+    "price": 1200,
+    "quantity": 65845,
+    "rating": 5,
+    "date": "2021-08-10",
+    "tags": [
+      "Great",
+      "Moderate",
+      "Silver"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc4",
+      "name": "Computer",
+      "type": "Technology"
+    }
+  },
+  {
+    "id": "64d565a1c817046ab2d34fc8",
+    "name": "LG 29",
+    "description": "Android phone",
+    "price": 1100,
+    "quantity": 98554,
+    "rating": 4,
+    "date": "2020-08-10",
+    "tags": [
+      "Good",
+      "Expensive",
+      "Green"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc3",
+      "name": "Phone",
+      "type": "Technology"
+    }
+  },
+  {
+    "id": "64d565a1c817046ab2d34fc9",
+    "name": "Acer Pro",
+    "description": "Laptop",
+    "price": 750,
+    "quantity": 32589,
+    "rating": 5,
+    "date": "2019-08-10",
+    "tags": [
+      "Excellent",
+      "Moderate",
+      "Blue"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc3",
+      "name": "Phone",
+      "type": "Technology"
+    }
+  },
+  {
+    "id": "64d565a1c817046ab2d34fca",
+    "name": "Dell Desktop",
+    "description": "Windows desktop",
+    "price": 650,
+    "quantity": 789878,
+    "rating": 2,
+    "date": "2018-08-10",
+    "tags": [
+      "Mediocre",
+      "Cheap",
+      "Red"
+    ],
+    "category": {
+      "id": "64d565a1c817046ab2d34fc4",
+      "name": "Computer",
+      "type": "Technology"
+    }
+  }
+]

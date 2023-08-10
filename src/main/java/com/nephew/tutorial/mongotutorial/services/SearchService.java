@@ -1,6 +1,5 @@
 package com.nephew.tutorial.mongotutorial.services;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
@@ -73,6 +72,9 @@ public class SearchService {
 		List<Product> products = template.find(query, Product.class);
 		return products;
 	}
+	
+	// searchAndSortAscByPrice
+	
 	
 	public Product sortMostRecentDate() {
 		Query query = new Query();
